@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     });
 
     return Response.json({ message: 'Email sent successfully', data });
-  } catch (error) {
-    return Response.json({ message: 'meow' }, { status: 500 });
+  } catch {
+    return Response.json({ message: 'Failed to send email' }, { status: 500 });
   }
 }
