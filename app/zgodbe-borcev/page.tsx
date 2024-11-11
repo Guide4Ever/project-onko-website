@@ -39,7 +39,7 @@ export default function ZgodbeBorcev() {
 }
 
 // The plain text content
-export const text = `Pri Projektu Onko smo z namenom ozaveščanja o raku februarja 2022 na socialnih omrežjih začeli serijo objav, kjer delimo osebne zgodbe posameznikov, ki so se v življenju pobliže srečali s to boleznijo. Objavimo jih s prizadevanjem, da bi čim več ljudi spoznalo, s čim se spopada oseba, ki zboli za rakom, prav tako pa si želimo, da bi zgodbe hkrati komu vlile upanje in voljo, da se bori naprej. 
+const text = `Pri Projektu Onko smo z namenom ozaveščanja o raku februarja 2022 na socialnih omrežjih začeli serijo objav, kjer delimo osebne zgodbe posameznikov, ki so se v življenju pobliže srečali s to boleznijo. Objavimo jih s prizadevanjem, da bi čim več ljudi spoznalo, s čim se spopada oseba, ki zboli za rakom, prav tako pa si želimo, da bi zgodbe hkrati komu vlile upanje in voljo, da se bori naprej. 
 Tudi vas vabimo, da z nami skozi zgodbo delite svojo osebno izkušnjo, če:
 
 1) se trenutno soočate z rakom,
