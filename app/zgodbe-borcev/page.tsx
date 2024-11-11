@@ -1,6 +1,5 @@
 import { PortableText } from "@portabletext/react";
 import Form from "../components/form/Form";
-import { prisma } from "../db";
 
 export default function ZgodbeBorcev() {
 
