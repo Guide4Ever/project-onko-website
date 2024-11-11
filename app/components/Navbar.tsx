@@ -8,7 +8,7 @@ import { ONKO_LOGO_URL } from "../constants";
 
 const Navbar = () => {
 
-  let pathName = usePathname() || '/';
+  const pathName = usePathname() || '/';
 
   // <div className="flex items-center grid grid-cols-2">
   // <img className="h-16" src="https://ik.imagekit.io/via4rkmu1/onco-icon-removebg-preview.png?updatedAt=1729679890541"></img>

@@ -110,7 +110,7 @@ export function Form() {
         <ToastContainer />
       </Suspense>
 
-      <div className="grid grid-cols-3 space-x-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
         <div className="col-span-1">
           <TextBox
             numberOfLines={1}
@@ -136,7 +136,7 @@ export function Form() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 space-x-2">
+      <div className="grid lg:grid-cols-2 sm:grid-cols-1 space-x-2">
         <TextBox
           numberOfLines={6}
           text={text}
@@ -148,6 +148,7 @@ export function Form() {
             width={350}
             height={204}
             value={file}
+            className="mt-4 sm:mt-0"
             dropzoneOptions={{
               maxSize: 1024 * 1024 * 1, // 1MB
             }}

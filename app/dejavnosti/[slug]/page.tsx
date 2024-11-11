@@ -1,6 +1,6 @@
 import { client } from "@/lib/sanity";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 
 interface Activity {
   title: string;
@@ -10,7 +10,7 @@ interface Activity {
   _id: string;
   imageUrl: string;
   publishedAt: Date;
-  content: any; 
+  content: PortableTextBlock[];
   formattedPublishedAt: string;
 }
 

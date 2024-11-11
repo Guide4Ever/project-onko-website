@@ -2,21 +2,7 @@ import { PortableText } from "@portabletext/react";
 import Form from "../components/form/Form";
 import { prisma } from "../db";
 
-async function getEntries() {
-  const data = await prisma.story.findMany({
-    take: 9,
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-
-  return data;
-}
-
-export const revalidate = 60;
-
-export default async function ZgodbeBorcev() {
-  const data = await getEntries();
+export default function ZgodbeBorcev() {
 
   // Convert string to a Portable Text compatible format (block array)
   const portableText = [

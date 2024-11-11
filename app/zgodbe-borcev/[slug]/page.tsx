@@ -1,6 +1,6 @@
 import { client } from "@/lib/sanity";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 
 interface Story {
   title: string;
@@ -11,7 +11,7 @@ interface Story {
   imageUrl: string;
   publishedAt: Date;
   shortDescription: string;
-  content: any;
+  content: PortableTextBlock[];
   formattedPublishedAt: string;
 }
 

@@ -72,7 +72,7 @@ export default async function OProjektuOnko() {
             <div className="col-span-2 text-left text-lg text-gray-900 dark:text-gray-100">
               <p className="font-bold">Društvo študentov medicine Slovenije</p>
               <p className="italic">
-                Slovenian Medical Students' International Committee Ljubljana (SloMSIC Ljubljana)
+                Slovenian Medical Students&apos; International Committee Ljubljana (SloMSIC Ljubljana)
               </p>
               <p>Korytkova ulica 2</p>
               <p>1000 Ljubljana</p>
