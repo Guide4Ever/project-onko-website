@@ -136,7 +136,7 @@ export function Form() {
           />
         </div>
       </div>
-      <div className="grid lg:grid-cols-2 sm:grid-cols-1 space-x-2">
+      <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 mx-auto max-w-screen-md">
         <TextBox
           numberOfLines={6}
           text={text}

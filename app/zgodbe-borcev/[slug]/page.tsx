@@ -57,7 +57,7 @@ export default async function StoryArticle({
       {/* Container with border and shadow */}
       <div className="relative max-w-[900px] mx-auto bg-gray-50 dark:bg-black overflow-hidden shadow-lg dark:shadow-purple-700">
         {/* Background Gradient using ::before */}
-        <div className="relative mr-12 ml-12 mb-10">
+        <div className="relative mx-4 sm:mx-8 lg:mx-12 mb-10">
           <div className="background-gradient"></div>
 
           {/* Title */}
@@ -68,8 +68,8 @@ export default async function StoryArticle({
           </h1>
 
           {/* Data about author and published date */}
-          <div className="flex items-center justify-between mt-14">
-            {/* Author Info (left-aligned) */}
+          <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:items-center mt-14 space-y-4 sm:space-y-0">
+            {/* Author Info (center-aligned on small screens) */}
             <div className="flex items-center space-x-2">
               <Image
                 src={data.authorImageUrl}
@@ -78,13 +78,13 @@ export default async function StoryArticle({
                 alt="Author Image"
                 className="object-cover rounded-full border-2 border-primary"
               />
-              <p className="text-sm text-gray-500">{data.authorName}</p>
+              <p className="text-sm text-gray-500 text-center sm:text-left">{data.authorName}</p>
             </div>
 
-            {/* Published Date with Icon (right-aligned) */}
-            <div className="flex items-center space-x-1">
+            {/* Published Date with Icon (center-aligned on small screens) */}
+            <div className="flex items-center space-x-1 justify-center sm:justify-end">
               <svg
-                className="mr-2 w-5 h-5 text-gray-500"
+                className="w-5 h-5 text-gray-500"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -98,7 +98,7 @@ export default async function StoryArticle({
                   d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                 />
               </svg>
-              <p className="text-sm text-gray-500">{data.formattedPublishedAt}</p>
+              <p className="text-sm text-gray-500 text-center sm:text-right">{data.formattedPublishedAt}</p>
             </div>
           </div>
 
