@@ -1,77 +1,66 @@
 import Image from "next/image";
-import { client } from "../lib/sanity";
+import { client } from "../../lib/sanity";
 import Link from "next/link";
 
-interface Story {
-    title: string;
-    currentSlug: string;
-    authorName: string;
-    authorImageUrl: string;
-    _id: string;
-    imageUrl: string;
-    publishedAt: Date;
-    shortDescription: string;
-    formattedPublishedAt: string;
-  }
+interface Activity {
+  title: string;
+  currentSlug: string;
+  authorName: string;
+  authorImageUrl: string;
+  _id: string;
+  imageUrl: string;
+  publishedAt: Date;
+  shortDescription: string;
+  formattedPublishedAt: string;
+}
 
-  async function getStories() {
-    const query = `*[_type == 'story-post'] | order(publishedAt desc) {
-      title,
-      "currentSlug": slug.current,
-      "authorName": author->name,
-      "authorImageUrl": author->image.asset->url,
-      _id,
-      "imageUrl": mainImage.asset->url,
-      publishedAt,
-      shortDescription
-    }`;
-  
-    const data = await client.fetch(query);
-  
-      // Format the date on the server-side
-      return data.map((story: Story) => ({
-        ...story,
-        formattedPublishedAt: new Date(story.publishedAt).toLocaleDateString("sl-SI", {
-          day: "numeric",
-          month: "numeric",
-          year: "numeric",
-        }),
-      }));
-  }
+async function getActivities() {
+  const query = `*[_type == 'activity-post'] | order(publishedAt desc) {
+    title,
+    "currentSlug": slug.current,
+    "authorName": author->name,
+    "authorImageUrl": author->image.asset->url,
+    _id,
+    "imageUrl": mainImage.asset->url,
+    publishedAt,
+  }`;
+
+  const data = await client.fetch(query);
+
+  // Format the date on the server-side
+  return data.map((activity: Activity) => ({
+    ...activity,
+    formattedPublishedAt: new Date(activity.publishedAt).toLocaleDateString("sl-SI", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    }),
+  }));
+}
 
 export const revalidate = 60;
 
-export default async function Home() {
-  const data: Story[] = await getStories();
+export default async function Dejavnosti() {
+  const data: Activity[] = await getActivities();
 
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
       <div className="flex flex-col items-center justify-center space-y-2 pt-6 pb-8 md:space-y-5">
         <h1 className="text-center text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          Naše zgodbe
+          Naše dejavnosti
         </h1>
       </div>
 
       <div className="grid gap-y-8 sm:gap-6 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-10 pt-8">
-        {data.map((story) => (
+        {data.map((activity) => (
           <article
-            key={story._id}
+            key={activity._id}
             className="overflow-hidden dark:border-zinc-600 rounded-lg border border-gray-100 bg-white shadow-lg dark:bg-black dark:shadow-gray-700 transform transition-transform duration-300 hover:scale-105 dark:hover:shadow-purple-500/70 hover:shadow-purple-500/70"
           >
-            <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-2">
-                <div className="ml-2 flex-shrink-0 w-6 h-6 relative">
-                  <Image
-                    fill
-                    src={story.authorImageUrl}
-                    alt="Image of the story"
-                    className="object-cover rounded-full"
-                  />
-                </div>
-                <h3 className="text-sm font-medium text-gray-900 dark:text-white">
-                  {story.authorName}
-                </h3>
-              </div>
+            <div className="flex justify-between items-center ml-4">
+              <h3 className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                {activity.title}
+              </h3>
 
               <div className="flex items-center">
                 <svg
@@ -98,33 +87,22 @@ export default async function Home() {
                   suppressHydrationWarning
                   className="m-[10px] text-sm font-medium text-gray-400 dark:text-gray-400"
                 >
-                  {story.formattedPublishedAt}
+                  {activity.formattedPublishedAt}
                 </p>
               </div>
             </div>
 
-            <Link key={story._id} href={`/zgodbe-borcev/${story.currentSlug}`}>
+            <Link key={activity._id} href={`/dejavnosti/${activity.currentSlug}`}>
               <div className="h-56 w-full relative overflow-hidden">
                 <Image
                   fill
-                  src={story.imageUrl}
-                  alt="Image of the story"
+                  src={activity.imageUrl}
+                  alt="Image of the activity"
                   className="object-cover"
+                  priority
                 />
               </div>
             </Link>
-
-            <div className="p-4 sm:p-6">
-              <Link href={`/zgodbe-borcev/${story.currentSlug}`}>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                  {story.title}
-                </h3>
-              </Link>
-
-              <p className="line-clamp-3 mt-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400 overflow-hidden h-[calc(1.5rem*3)]">
-                {story.shortDescription}
-              </p>
-            </div>
           </article>
         ))}
       </div>
