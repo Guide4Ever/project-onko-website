@@ -5,7 +5,7 @@ export default function DownloadTOSButton() {
   const handleDownload = async () => {
     try {
 
-      const response = await fetch("https://ik.imagekit.io/via4rkmu1/2021-01-3424-p2.pdf?updatedAt=1730583510613");
+      const response = await fetch("https://ik.imagekit.io/via4rkmu1/Pogoji%20za%20spletno%20stran.pdf?updatedAt=1741017015776");
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

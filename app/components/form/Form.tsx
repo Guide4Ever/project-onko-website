@@ -46,13 +46,13 @@ export function Form() {
           file,
           input: { type: "post" }
         });
-
+        console.log("Image uploaded successfully:", res);
         // 2. Database save
         const formData = new FormData();
         formData.append("entry", text);
         formData.append("imageUrl", res.url);
         await postEntry(formData);
-
+        console.log("Entry saved successfully");
         // 3. Send email
         await fetch("/api/mail", {
           method: "POST",
@@ -68,7 +68,7 @@ export function Form() {
             "Content-Type": "application/json",
           },
         });
-
+        console.log("Email sent successfully");
         // Reset the form
         setText("");
         setFile(undefined);
